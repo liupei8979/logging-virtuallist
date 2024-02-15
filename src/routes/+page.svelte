@@ -1,2 +1,8 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+	import Log from '@src/log/index.svelte';
+	import { Content } from 'carbon-components-svelte';
+</script>
+
+<Content>
+	<Log />
+</Content>
