@@ -20,6 +20,7 @@ __  __ _       _                         __  __                                 
 		);
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
+    import { socketStore } from '@src/store/socket';
 	import {
 		Column,
 		Content,
@@ -34,10 +35,15 @@ __  __ _       _                         __  __                                 
 		SkipToContent
 	} from 'carbon-components-svelte';
 	import 'carbon-components-svelte/css/g100.css';
+    import { onDestroy } from 'svelte';
 
+    if (browser) {
+		socketStore.connect();
+		onDestroy(() => {
+			socketStore?.disconnect();
+		});
+	}
 	let isSideNavOpen = false;
-	$: isHomePage = $page.url.pathname === '/';
-	$: currentPage = $page.url.pathname.split('/')[1]; // URL의 첫 번째 세그먼트를 추출
 </script>
 
 <Header
